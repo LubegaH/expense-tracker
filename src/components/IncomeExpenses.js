@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 
 const IncomeExpenses = () => {
@@ -8,15 +8,18 @@ const IncomeExpenses = () => {
     .filter((item) => item > 0)
     .reduce((acc, item) => (acc += item), 0);
 
+  const expense =
+    amounts.filter((item) => item < 0).reduce((acc, item) => (acc += item), 0) *
+    -1;
   return (
     <div className='inc-exp-container'>
       <div>
         <h4>Income</h4>
-        <p className='money plus'>UGX 0</p>
+        <p className='money plus'>UGX {income}</p>
       </div>
       <div>
         <h4>Expense</h4>
-        <p className='money minus'>UGX 0</p>
+        <p className='money minus'>UGX {expense}</p>
       </div>
     </div>
   );
